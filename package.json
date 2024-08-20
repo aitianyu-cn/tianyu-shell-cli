@@ -1,0 +1,56 @@
+{
+    "name": "@aitianyu.cn/tianyu-shell-cli",
+    "version": "0.0.1",
+    "description": "Tianyu Shell Command-line Interface",
+    "main": "index.js",
+    "type": "commonjs",
+    "files": [
+        "dist"
+    ],
+    "bin": {
+        "tianyu-shell": "./dist/bin/shell-cli.js"
+    },
+    "scripts": {
+        "start": "npx tianyu-shell",
+        "build": "npm run before-build && npm run compiler && npm run copy && npm run after-build",
+        "copy": "npm run copy-lib && npm run copy-basic-res",
+        "copy-lib": "copyfiles -u 2 \"build/src/**/*.js\" dist",
+        "copy-basic-res": "copyfiles -u 1 \"src/**/*.json\" dist",
+        "before-build": "rimraf ./build ./dist",
+        "after-build": "rimraf ./build",
+        "compiler": "tsc -p \"./tsconfig.build.json\" && tsc-alias -p \"./tsconfig.build.json\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/aitianyu-cn/tianyu-shell-cli.git"
+    },
+    "keywords": [
+        "aitianyu.cn",
+        "tianyu-shell",
+        "cli"
+    ],
+    "author": "dev.aitianyu.cn@outlook.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/aitianyu-cn/tianyu-shell-cli/issues"
+    },
+    "homepage": "https://github.com/aitianyu-cn/tianyu-shell-cli#readme",
+    "dependencies": {
+        "@aitianyu.cn/types": "^0.0.13",
+        "commander": "^12.1.0",
+        "core-js": "^3.36.0",
+        "cross-env": "^7.0.3",
+        "fs": "^0.0.1-security",
+        "path": "^0.12.7",
+        "typescript": "^5.4.2"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.28",
+        "copyfiles": "^2.4.1",
+        "process": "^0.11.10",
+        "rimraf": "^5.0.5",
+        "ts-node": "^10.9.2",
+        "tsc-alias": "^1.8.8",
+        "typescript-eslint": "^7.2.0"
+    }
+}
